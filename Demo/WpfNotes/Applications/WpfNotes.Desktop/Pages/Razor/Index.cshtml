@@ -1,0 +1,71 @@
+﻿@page "/Razor"
+@using WpfNotes.Desktop
+@model IndexModel
+@inject INotesProvider _notes;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, WpfNotes.Desktop
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+        rel="stylesheet" crossorigin="anonymous">
+        <title>Wpf Notes</title>
+    </head>
+    <body>
+        <div class="modal fade" id="note-modal" tabindex="-1" aria-labelledby="note-modal-title" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <form method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">New Note</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <vc:note-input note="null"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <main>
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between m-1">
+                <a href="/Razor">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAABm0lEQVR4nO2VMUvDUBRGv2gRBNF/4OA/qKVFdNBNOukiuOnoXLAdKoKTOLsLjjo6C07FUXBwKg4OLlqaaps2fcl7Di5VEds6fCT3nvGRCyeHdxPv5nTbQShBL3qcYEuw0QBsATYagC3ARgOwBdiID5BZy86zHZh0xN8ADcAWYKMB2AJkZqQHmJQeQPwKaAANwBZgowHYAmw0AFuAjQZgC7DRAGwBNhqALcBGA7AF2GgAtgAZT3qAWekBxK+ABtAAbAE2GoAtwEYDsAXYaAC2ABsNwBZgIz5Ahi3wb+YWxp/tv93LvAHOAaF/ju7rprwAzlqEzQPkKrsA/OSvwCjYOETY3EG+egEAWDmxcgLEpoF+awP5am3wWEaAOKwj9IsoHNa/nNcqU+n/BkS9W3QbhR8v/8l0ugOY4BKd51UsHTV/eyT5K+Ac4Hnfzxyi4BjZUvWv8eQHgAMwEMA5gyjYQ7Z0Nsx0CgIM4KwP097C4v71sCPpCWDjJ5h2Ebnywyhj6QhgozuYzjpy5ZdRR5P/F7DmCv335XFeHgA+AKskZ39GVnZ9AAAAAElFTkSuQmCC"
+                     height="32" width="32" />
+                </a>
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#note-modal">
+                        New Note
+                    </button>
+                </div>
+            </header>
+            <section>
+                <div class="d-flex flex-wrap m-1">
+                    @foreach (var item in Model.Notes)
+                    {
+                        <div class="m-1">
+                            <a href="/Razor/@item.Id">
+                                <img src="@Url.Page("Index", "NoteImage", new { noteId = item.Id })" />
+                            </a>
+                        </div>
+                    }
+                </div>
+            </section>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+                integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+    </body>
+</html>
+
+
+

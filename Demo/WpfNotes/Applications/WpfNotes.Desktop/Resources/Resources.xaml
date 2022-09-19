@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
+                    xmlns:local="clr-namespace:WpfNotes.Desktop"
+                    xmlns:classes="clr-namespace:WpfNotes.Desktop.Classes"
+                    xmlns:controls="clr-namespace:WpfNotes.Render.Controls;assembly=WpfNotes.Render">
+    <classes:StringToBrushConverter x:Key="StringToBrushConverter"/>
+    <DataTemplate x:Key="UpsertTemplate">
+        <blazor:BlazorWebView 
+            Width="480" Height="320" 
+            HostPage="wwwroot\index.html" 
+            Services="{DynamicResource services}">
+            <blazor:BlazorWebView.RootComponents>
+                <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:Upsert}" />
+            </blazor:BlazorWebView.RootComponents>
+        </blazor:BlazorWebView>
+    </DataTemplate>
+    <DataTemplate x:Key="DeleteTemplate">
+        <StackPanel Orientation="Vertical">
+            <controls:NoteControl Height="250" Width="250" Margin="5" 
+            Title="{Binding Path=Title}" Content="{Binding Path=Content}" 
+            Fill="{Binding Path=Background, Converter={StaticResource StringToBrushConverter}}">
+            </controls:NoteControl>
+            <TextBlock Text="Are you sure you want to Delete this Note?"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="NoteTemplate">
+        <controls:NoteControl Height="250" Width="250" Margin="5" 
+        Title="{Binding Path=Title}" Content="{Binding Path=Content}" 
+        Fill="{Binding Path=Background, Converter={StaticResource StringToBrushConverter}}">
+            <controls:NoteControl.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" 
+                Command="{Binding Path=DataContext.EditAction.Command, ElementName=Display}" 
+                CommandParameter="{Binding}"/>
+                <MouseBinding MouseAction="RightClick"
+                 Command="{Binding Path=DataContext.DeleteAction.Command, ElementName=Display}" 
+                CommandParameter="{Binding}"/>
+            </controls:NoteControl.InputBindings>
+        </controls:NoteControl>
+    </DataTemplate>
+</ResourceDictionary>

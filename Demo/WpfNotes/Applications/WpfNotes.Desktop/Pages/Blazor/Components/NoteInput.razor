@@ -1,0 +1,41 @@
+﻿@namespace WpfNotes.Desktop
+@inject INotesProvider _notes;
+<EditForm Model="@Note">
+    <DataAnnotationsValidator />
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-3"><label for="name" class="form-label">Title</label></div>
+                <div class="col-9"><InputText id="name" class="form-control" @bind-Value="Note.Title" /></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3"><label for="content" class="form-label">Content</label></div>
+                <div class="col-9"><InputTextArea id="content" class="form-control" @bind-Value="Note.Content" rows="4" /></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3">Background</div>
+                <div class="col-9">
+                    <InputRadioGroup @bind-Value="Note.Background">
+                        @for (int index = 0; index < _notes.Colours.Count; index++)
+                        {
+                            var colour = _notes.Colours[index];
+                            <div class="form-check form-check-inline">
+                                <InputRadio id="@index" class="form-check-input" Value="@colour" />
+                                <label class="form-check-label" for="@index">
+                                    <NotePreview Background="@colour" />
+                                </label>
+                            </div>
+                        }
+                    </InputRadioGroup>
+                </div>
+                <ValidationSummary />
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code 
+{
+    [Parameter]
+    public NoteModel Note { get; set; } = new();
+}
