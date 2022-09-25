@@ -67,6 +67,7 @@ internal class ApplicationProvider : IApplicationProvider
     /// </summary>
     private async Task NewAsync()
     {
+        Content.Note = new();
         var result = await Upsert(GetUpsert(new_note_title));
         if (result && IsValid(Content.Note, new()) &&
             await _notes.CreateAsync() && await _notes.AddAsync(Content.Note) != null)
