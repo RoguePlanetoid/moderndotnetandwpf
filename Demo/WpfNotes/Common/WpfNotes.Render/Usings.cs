@@ -1,0 +1,13 @@
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using System.IO;
+global using System.Windows;
+global using System.Windows.Controls;
+global using System.Windows.Data;
+global using System.Windows.Markup;
+global using System.Windows.Media;
+global using System.Windows.Media.Imaging;
+global using System.Windows.Shapes;
+global using WpfNotes.Common.Models;
+global using WpfNotes.Render.Controls;
+global using WpfNotes.Render.Provider;
+global using Path = System.Windows.Shapes.Path;

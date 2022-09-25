@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfNotes.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        mc:Ignorable="d"
+        Name="Display"
+        Title="Wpf Notes" 
+        Height="450" 
+        Width="800"
+        WindowState="Maximized"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Margin="5" Command="{Binding ListAction.Command}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="pack://application:,,,/Resources/notes.png" Height="32" Width="32"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <ItemsControl Grid.Row="1" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            ItemsSource="{Binding Notes}" ItemTemplate="{StaticResource NoteTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <ui:CommandBar Grid.Row="2" IsOpen="True" VerticalAlignment="Bottom">
+            <ui:AppBarButton Name="Toggle" Icon="Page2" Command="{Binding NewAction.Command}"/>
+        </ui:CommandBar>
+    </Grid>
+</Window>

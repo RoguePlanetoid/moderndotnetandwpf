@@ -1,0 +1,35 @@
+﻿@namespace WpfNotes.Desktop
+@inject INotesProvider _notes
+@model NoteModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, WpfNotes.Desktop
+<div class="row mb-3">
+    <div class="col-3"><label for="name" class="form-label">Title</label></div>
+    <div class="col-9">
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-3"><label for="content" class="form-label">Content</label></div>
+    <div class="col-9">
+        <textarea asp-for="Content" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-3"><label for="background" class="form-label">Background</label></div>
+    <div class="col-9">
+        @for (int index = 0; index < _notes.Colours.Count; index++)
+        {
+            var colour = _notes.Colours[index];
+            <div class="form-check form-check-inline">
+                <input type="radio" asp-for="Background" id="@index" class="form-check-input" Value="@colour" />
+                <label class="form-check-label" for="@index">
+                    <vc:note-preview background="@colour" />
+                </label>
+            </div>
+        }
+        <span asp-validation-for="Background" class="text-danger"></span>
+    </div>
+</div>

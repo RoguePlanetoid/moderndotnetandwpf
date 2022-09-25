@@ -1,0 +1,14 @@
+﻿@namespace WpfNotes.Desktop
+<svg version="1.1" viewBox="0 0 466.66666 466.66666" height="@Height" width="@Width" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+    <path style="fill:@Background;fill-opacity:1;" d="M 0,233.33333 V 0 H 233.33333 466.66666 V 183.69805 367.3961 l -57.66667,49.60273 -57.66666,49.60274 -175.66667,0.0325 L 0,466.66666 Z" />
+</svg>
+@code {
+    [Parameter]
+    public string Background { get; set; } = "#F5F5F5";
+
+    [Parameter]
+    public int Height { get; set; } = 32;
+
+    [Parameter]
+    public int Width { get; set; } = 32;
+}

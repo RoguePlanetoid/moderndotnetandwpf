@@ -1,0 +1,10 @@
+﻿global using Microsoft.Data.Sqlite;
+global using Microsoft.Extensions.Configuration;
+global using System.ComponentModel;
+global using System.ComponentModel.DataAnnotations;
+global using System.Runtime.CompilerServices;
+global using System.Windows.Input;
+global using WpfNotes.Common.Bindings;
+global using WpfNotes.Common.Config;
+global using WpfNotes.Common.Models;
+global using WpfNotes.Common.Notes;
