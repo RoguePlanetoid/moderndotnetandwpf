@@ -69,9 +69,15 @@ internal class ApplicationProvider : IApplicationProvider
     {
         Content.Note = new();
         var result = await Upsert(GetUpsert(new_note_title));
-        if (result && IsValid(Content.Note, new()) &&
-            await _notes.CreateAsync() && await _notes.AddAsync(Content.Note) != null)
-            Content.Notes.Add(Content.Note);
+        if (result && IsValid(Content.Note, new()) && await _notes.CreateAsync())
+        {
+            var id = await _notes.AddAsync(Content.Note);
+            if (id != null)
+            {
+                Content.Note.Id = id;
+                Content.Notes.Add(Content.Note);
+            }
+        }
     }
 
     /// <summary>
