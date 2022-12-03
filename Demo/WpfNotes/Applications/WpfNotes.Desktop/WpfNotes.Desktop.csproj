@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	<RootNameSpace>WpfNotes.Desktop</RootNameSpace>
@@ -15,13 +15,13 @@
 
   <ItemGroup>
 	<PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
-	<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="6.0.536" />
+	<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.49" />
 	<PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
-	<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+	<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
 	<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
